@@ -26,7 +26,7 @@ if [ ! -d $NEWPATH ]; then
     mkdir $NEWPATH
 fi
 
-souce ~/.bash_profile
+#source ~/.bash_profile
 
 EXPORTPATH="/Users/dk/Documents/UICheck/result/"
 if [ ! -d $EXPORTPATH ]; then  
@@ -36,10 +36,12 @@ fi
 $File1
 $File2
 $File3
+##图片差异 当前ImageMagick返回结果使用了科学计数法
 $diff_count
 $ok_count
 $ng_count
 
+#比较BASEPATH&NEWPATH中的所有同名图片,并输出diff图片到EXPORTPATH
 function compare_png(){ 
     for file in ` ls $BASEPATH `
     do
@@ -52,12 +54,11 @@ function compare_png(){
             File1=$EXPORTPATH$file"_base_small.png"
             File2=$EXPORTPATH$file"_new_small.png"
             File3=$EXPORTPATH$file"_export_small.png"
-            echo "#####" $File3
             #width is 160 px, and you can use percent like 30% replace 160
             convert -thumbnail 160 $BASEPATH$file $File1
             convert -thumbnail 160 $NEWPATH$file $File2
             convert -thumbnail 160 $EXPORTPATH$file $File3
-            echo "##########diff_count" $diff_count
+            #TODO Shell太难用,页面生成代码移到JS中进行
             # if [$diff_count -gt 0 ]; then
                 echo "<br><tr>">>$result_html
                 echo "<td><font style=\"color:red;\">$file</font></td>">>$result_html
@@ -94,10 +95,9 @@ function compare_png(){
 }
 #create result.html
 result_html=$EXPORTPATH"result.html"
+`rm -r $result_html`
 echo $result_html
 echo "<a href="$EXPORTPATH/result.html">$(date -d now --rfc-3339=ns)</a>&nbsp;&nbsp;<br>">>$result_html
 echo "<br>">>$result_html
 echo "<table border="1">">>$result_html
 compare_png
-
-
