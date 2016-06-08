@@ -16,12 +16,12 @@
 #
 
 ##配置文件夹
-BASEPATH="/Users/dk/Documents/UICheck/base/"
+BASEPATH="/Users/dk/Documents/UICheck/base/"$1"/"
 if [ ! -d $BASEPATH ]; then  
     mkdir $BASEPATH
 fi 
 
-NEWPATH="/Users/dk/Documents/UICheck/new/"
+NEWPATH="/Users/dk/Documents/UICheck/base/"$2"/"
 if [ ! -d $NEWPATH ]; then  
     mkdir $NEWPATH
 fi
