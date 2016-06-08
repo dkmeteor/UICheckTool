@@ -14,47 +14,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-echo "Enter base PNGs path and press ENTER to continue, default is : /Users/dk/Documents/UICheck/base/"
-read -e BASEPATH
-if [ -z $BASEPATH ]; then 
-    echo "Use default path /Users/dk/Documents/UICheck/base/"
-    BASEPATH="/Users/dk/Documents/UICheck/base/"
-fi
-echo "Your Base Path is : "
-echo $BASEPATH
+
+##配置文件夹
+BASEPATH="/Users/dk/Documents/UICheck/base/"
 if [ ! -d $BASEPATH ]; then  
     mkdir $BASEPATH
 fi 
-echo "#######BASE END###########"
 
-
-echo "Enter New PNGs path and press ENTER to continue, Like : /Users/dk/Documents/UICheck/new/"
-read -e NEWPATH
-if [ -z $NEWPATH ]; then
-    echo "Use default path /Users/dk/Documents/UICheck/new/"
-    NEWPATH="/Users/dk/Documents/UICheck/new/"
-fi
-echo "Your New Path is : "
-echo $NEWPATH
+NEWPATH="/Users/dk/Documents/UICheck/new/"
 if [ ! -d $NEWPATH ]; then  
     mkdir $NEWPATH
 fi
-echo "######NEW END############"
 
 souce ~/.bash_profile
 
-echo "Enter Export path and press ENTER to continue, Like : /Users/dk/Documents/UICheck/result/"
-read -e EXPORTPATH
-if [ -z $EXPORTPATH ]; then
-    echo "Use default path /Users/dk/Documents/UICheck/result/"
-    EXPORTPATH="/Users/dk/Documents/UICheck/result/"
-fi
-echo "Your Export Path is : "
-echo $EXPORTPATH
+EXPORTPATH="/Users/dk/Documents/UICheck/result/"
 if [ ! -d $EXPORTPATH ]; then  
     mkdir $EXPORTPATH
 fi
-echo "#######Export END##########"
 
 $File1
 $File2
@@ -62,6 +39,7 @@ $File3
 $diff_count
 $ok_count
 $ng_count
+
 function compare_png(){ 
     for file in ` ls $BASEPATH `
     do

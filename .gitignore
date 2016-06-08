@@ -1,0 +1,10 @@
+
+#Log Files
+*.log
+
+# Mac DS_Store file
+.DS_Store
+
+/base
+/new
+/result
