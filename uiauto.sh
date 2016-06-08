@@ -101,3 +101,4 @@ echo "<a href="$EXPORTPATH/result.html">$(date -d now --rfc-3339=ns)</a>&nbsp;&n
 echo "<br>">>$result_html
 echo "<table border="1">">>$result_html
 compare_png
+`open result/result.html`
