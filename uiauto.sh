@@ -15,6 +15,9 @@
 # limitations under the License.
 #
 
+
+`adb pull /sdcard/uiautomator/$2 base/$2`
+
 ##配置文件夹
 BASEPATH="/Users/dk/Documents/UICheck/base/"$1"/"
 if [ ! -d $BASEPATH ]; then  
