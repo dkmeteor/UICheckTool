@@ -16,7 +16,8 @@
 #
 
 
-`adb pull /sdcard/uiautomator/$2 base/$2`
+# `adb pull /sdcard/uiautomator/$1 base/$1`
+# `adb pull /sdcard/uiautomator/$2 base/$2`
 
 ##配置文件夹
 BASEPATH="/Users/dk/Documents/UICheck/base/"$1"/"

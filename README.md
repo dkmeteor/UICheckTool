@@ -16,8 +16,8 @@
 - Step 2
     - clone [https://github.com/dkmeteor/UICheckTool](https://github.com/dkmeteor/UICheckTool)  
         或者 直接下载/复制 uiauto.sh脚本
-    - `Options` 到UiCheck根目录下,执行 adb pull /sdcard/uiautomator/版本号 base/版本号 
+    - 到UiCheck根目录下,执行 adb pull /sdcard/uiautomator/版本号 base/版本号 
         - ex: adb pull /sdcard/uiautomator/3.1.5 base/3.1.5
-    - 执行 sudo ./uiauto.sh 版本号1 版本号2 ,此时会自动从手机中pull版本号2的截图到 base/版本号 文件夹中,请预先保证版本号1 对应的截图已存在
+    - 执行 sudo ./uiauto.sh 版本号1 版本号2 ,可将脚本中中注释打开,此时会自动从手机中pull版本号1/2的截图到 base/版本号 文件夹中
         - ex: sudo ./uiauto.sh 3.1.4 3.1.5 
     - 执行完毕后会自动打开浏览器展示对比结果,你也可以手动打开result/result.html查看对比结果
