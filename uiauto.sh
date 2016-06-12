@@ -64,7 +64,7 @@ function compare_png(){
             convert -thumbnail 160 $EXPORTPATH$file $File3
             #TODO Shell太难用,页面生成代码移到JS中进行
             # if [$diff_count -gt 0 ]; then
-                echo "<br><tr>">>$result_html
+                echo "<tr>">>$result_html
                 echo "<td><font style=\"color:red;\">$file</font></td>">>$result_html
                 echo "<td><font style=\"color:red;\">$diff_count</font></td>">>$result_html
                 echo "<td><font style=\"color:red;\">"Failed"</font></td>">>$result_html
@@ -87,11 +87,11 @@ function compare_png(){
             # fi
         fi
     done
-    echo "<br><tr>">>$result_html
+    echo "<tr>">>$result_html
     echo "<td><font style=\"color:black;\">"OK :"</font></td>">>$result_html
     echo "<td><font style=\"color:black;\">$ok_count</font></td>">>$result_html
     echo "</tr>">>$result_html
-    echo "<br><tr>">>$result_html
+    echo "<tr>">>$result_html
     echo "<td><font style=\"color:red;\">"Failed :"</font></td>">>$result_html
     echo "<td><font style=\"color:red;\">$ng_count</font></td>">>$result_html
     echo "</tr>">>$result_html
@@ -102,7 +102,7 @@ result_html=$EXPORTPATH"result.html"
 `rm -r $result_html`
 echo $result_html
 echo "<a href="$EXPORTPATH/result.html">$(date -d now --rfc-3339=ns)</a>&nbsp;&nbsp;<br>">>$result_html
-echo "<br>">>$result_html
+echo "">>$result_html
 echo "<table border="1">">>$result_html
 compare_png
 `open result/result.html`
