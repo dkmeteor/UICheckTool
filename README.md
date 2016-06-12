@@ -1,6 +1,6 @@
 #UiAutomator & UICheck工具
 
-仅支持MAC&Linux,需先安装(ImageMagick)[http://www.imagemagick.org/script/index.php]  
+仅支持MAC&Linux,需先安装[ImageMagick](http://www.imagemagick.org/script/index.php)  
 
 
 	brew install imagemagick
