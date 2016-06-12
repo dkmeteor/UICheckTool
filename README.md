@@ -1,5 +1,11 @@
 #UiAutomator & UICheck工具
 
+仅支持MAC&Linux,需先安装(ImageMagick)[http://www.imagemagick.org/script/index.php]  
+
+
+	brew install imagemagick
+
+
 - Step 1
     - 配置UiAutomator环境,编写测试脚本,具体请参考官方UiAutomator文档
     - 使用Scheme访问所有页面,测试Scheme内可包含各页面测试id
