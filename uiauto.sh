@@ -32,7 +32,7 @@ fi
 
 #source ~/.bash_profile
 
-EXPORTPATH="/Users/dk/Documents/UICheck/result/"
+EXPORTPATH="/Users/dk/Documents/UICheck/result"$1"-"$2"/"
 if [ ! -d $EXPORTPATH ]; then  
     mkdir $EXPORTPATH
 fi
@@ -105,4 +105,4 @@ echo "<a href="$EXPORTPATH/result.html">$(date -d now --rfc-3339=ns)</a>&nbsp;&n
 echo "">>$result_html
 echo "<table border="1">">>$result_html
 compare_png
-`open result/result.html`
+`open result$1-$/result.html`
