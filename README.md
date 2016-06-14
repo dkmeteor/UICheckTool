@@ -20,4 +20,9 @@
         - ex: adb pull /sdcard/uiautomator/3.1.5 base/3.1.5
     - 执行 sudo ./uiauto.sh 版本号1 版本号2 ,可将脚本中中注释打开,此时会自动从手机中pull版本号1/2的截图到 base/版本号 文件夹中
         - ex: sudo ./uiauto.sh 3.1.4 3.1.5 
-    - 执行完毕后会自动打开浏览器展示对比结果,你也可以手动打开result/result.html查看对比结果
+    - 执行完毕后会自动打开浏览器展示对比结果,你也可以手动打开result版本号1-版本号2/result.html查看对比结果
+
+- TODO
+    - 当前输出UI太难看,需要处理一下,可能变成输出纯数据(JSON),UI到JS中组织
+    - 集成到jenkins
+    - 制作一个小型内网站点,显示&整理 数据,比如dexCount,及build&测试结果
