@@ -63,7 +63,7 @@ function compare_png(){
             convert -thumbnail 160 $NEWPATH$file $File2
             convert -thumbnail 160 $EXPORTPATH$file $File3
             #TODO Shell太难用,页面生成代码移到JS中进行
-            # if [$diff_count -gt 0 ]; then
+            if [ $diff_count -gt 1000 ]; then
                 echo "<tr>">>$result_html
                 echo "<td><font style=\"color:red;\">$file</font></td>">>$result_html
                 echo "<td><font style=\"color:red;\">$diff_count</font></td>">>$result_html
@@ -74,17 +74,17 @@ function compare_png(){
                 echo "<td>$diff_count</td>&nbsp;">>$result_html
                 echo "</tr>">>$result_html
                 let ng_count+=1;
-            # elif [ $diff_count -eq 0 ]; then
-            #     echo "<br><tr>">>$result_html
-            #     echo "<td><font style=\"color:black;\">$file</font></td>">>$result_html
-            #     echo "<td><font style=\"color:black;\">$diff_count</font></td>">>$result_html
-            #     echo "<td><font style=\"color:black;\">"OK"</font></td>">>$result_html
-            #     echo "<td><a target=_blank href=$BASEPATH$file><img src=$File1></a></td>&nbsp;">>$result_html
-            #     echo "<td><a target=_blank href=$NEWPATH$file><img src=$File2></a></td>&nbsp;">>$result_html
-            #     echo "<td><a target=_blank href=$EXPORTPATH$file><img src=$File3></a></td>&nbsp;">>$result_html
-            #     echo "</tr>">>$result_html
-            #     let ok_count+=1;
-            # fi
+            elif [ $diff_count -le 1000 ]; then
+                echo "<br><tr>">>$result_html
+                echo "<td><font style=\"color:black;\">$file</font></td>">>$result_html
+                echo "<td><font style=\"color:black;\">$diff_count</font></td>">>$result_html
+                echo "<td><font style=\"color:black;\">"OK"</font></td>">>$result_html
+                echo "<td><a target=_blank href=$BASEPATH$file><img src=$File1></a></td>&nbsp;">>$result_html
+                echo "<td><a target=_blank href=$NEWPATH$file><img src=$File2></a></td>&nbsp;">>$result_html
+                echo "<td><a target=_blank href=$EXPORTPATH$file><img src=$File3></a></td>&nbsp;">>$result_html
+                echo "</tr>">>$result_html
+                let ok_count+=1;
+            fi
         fi
     done
     echo "<tr>">>$result_html
@@ -101,7 +101,7 @@ function compare_png(){
 result_html=$EXPORTPATH"result.html"
 `rm -r $result_html`
 echo $result_html
-echo "<a href="$EXPORTPATH/result.html">$(date -d now --rfc-3339=ns)</a>&nbsp;&nbsp;<br>">>$result_html
+echo "result: "$1" -> "$2"<br>">>$result_html
 echo "">>$result_html
 echo "<table border="1">">>$result_html
 compare_png
