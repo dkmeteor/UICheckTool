@@ -20,19 +20,19 @@
 # `adb pull /sdcard/uiautomator/$2 base/$2`
 
 ##配置文件夹
-BASEPATH="/Users/dk/Documents/UICheck/base/"$1"/"
+BASEPATH="base/"$1"/"
 if [ ! -d $BASEPATH ]; then  
     mkdir $BASEPATH
 fi 
 
-NEWPATH="/Users/dk/Documents/UICheck/base/"$2"/"
+NEWPATH="base/"$2"/"
 if [ ! -d $NEWPATH ]; then  
     mkdir $NEWPATH
 fi
 
 #source ~/.bash_profile
 
-EXPORTPATH="/Users/dk/Documents/UICheck/result"$1"-"$2"/"
+EXPORTPATH="/result"$1"-"$2"/"
 if [ ! -d $EXPORTPATH ]; then  
     mkdir $EXPORTPATH
 fi
@@ -42,8 +42,6 @@ $File2
 $File3
 ##图片差异 当前ImageMagick返回结果使用了科学计数法
 $diff_count
-$ok_count
-$ng_count
 
 #比较BASEPATH&NEWPATH中的所有同名图片,并输出diff图片到EXPORTPATH
 function compare_png(){ 
@@ -63,39 +61,17 @@ function compare_png(){
             convert -thumbnail 160 $NEWPATH$file $File2
             convert -thumbnail 160 $EXPORTPATH$file $File3
             #TODO Shell太难用,页面生成代码移到JS中进行
-            if [ $diff_count -gt 1000 ]; then
-                echo "<tr>">>$result_html
-                echo "<td><font style=\"color:red;\">$file</font></td>">>$result_html
-                echo "<td><font style=\"color:red;\">$diff_count</font></td>">>$result_html
-                echo "<td><font style=\"color:red;\">"Failed"</font></td>">>$result_html
-                echo "<td><a target=_blank href=$BASEPATH$file><img src=$File1></a></td>&nbsp;">>$result_html
-                echo "<td><a target=_blank href=$NEWPATH$file><img src=$File2></a></td>&nbsp;">>$result_html
-                echo "<td><a target=_blank href=$EXPORTPATH$file><img src=$File3></a></td>&nbsp;">>$result_html
-                echo "<td>$diff_count</td>&nbsp;">>$result_html
-                echo "</tr>">>$result_html
-                let ng_count+=1;
-            elif [ $diff_count -le 1000 ]; then
-                echo "<br><tr>">>$result_html
-                echo "<td><font style=\"color:black;\">$file</font></td>">>$result_html
-                echo "<td><font style=\"color:black;\">$diff_count</font></td>">>$result_html
-                echo "<td><font style=\"color:black;\">"OK"</font></td>">>$result_html
-                echo "<td><a target=_blank href=$BASEPATH$file><img src=$File1></a></td>&nbsp;">>$result_html
-                echo "<td><a target=_blank href=$NEWPATH$file><img src=$File2></a></td>&nbsp;">>$result_html
-                echo "<td><a target=_blank href=$EXPORTPATH$file><img src=$File3></a></td>&nbsp;">>$result_html
-                echo "</tr>">>$result_html
-                let ok_count+=1;
-            fi
+            echo "<tr>">>$result_html
+            echo "<td><font style=\"color:red;\">$file</font></td>">>$result_html
+            echo "<td><font style=\"color:red;\">$diff_count</font></td>">>$result_html
+            echo "<td><font style=\"color:red;\">"Failed"</font></td>">>$result_html
+            echo "<td><a target=_blank href=$BASEPATH$file><img src=$File1></a></td>&nbsp;">>$result_html                
+            echo "<td><a target=_blank href=$NEWPATH$file><img src=$File2></a></td>&nbsp;">>$result_html
+            echo "<td><a target=_blank href=$EXPORTPATH$file><img src=$File3></a></td>&nbsp;">>$result_html
+            echo "<td>$diff_count</td>&nbsp;">>$result_html
+            echo "</tr>">>$result_html
         fi
     done
-    echo "<tr>">>$result_html
-    echo "<td><font style=\"color:black;\">"OK :"</font></td>">>$result_html
-    echo "<td><font style=\"color:black;\">$ok_count</font></td>">>$result_html
-    echo "</tr>">>$result_html
-    echo "<tr>">>$result_html
-    echo "<td><font style=\"color:red;\">"Failed :"</font></td>">>$result_html
-    echo "<td><font style=\"color:red;\">$ng_count</font></td>">>$result_html
-    echo "</tr>">>$result_html
-
 }
 #create result.html
 result_html=$EXPORTPATH"result.html"
