@@ -32,7 +32,7 @@ fi
 
 #source ~/.bash_profile
 
-EXPORTPATH="/result"$1"-"$2"/"
+EXPORTPATH="result"$1"-"$2"/"
 if [ ! -d $EXPORTPATH ]; then  
     mkdir $EXPORTPATH
 fi
@@ -53,13 +53,13 @@ function compare_png(){
         else
             echo "compare " $BASEPATH$file
             diff_count=`compare -metric AE $BASEPATH$file $NEWPATH$file $EXPORTPATH$file 2>&1`
-            File1=$EXPORTPATH$file"_base_small.png"
-            File2=$EXPORTPATH$file"_new_small.png"
-            File3=$EXPORTPATH$file"_export_small.png"
+            File1=$file"_base_small.png"
+            File2=$file"_new_small.png"
+            File3=$file"_export_small.png"
             #width is 160 px, and you can use percent like 30% replace 160
-            convert -thumbnail 160 $BASEPATH$file $File1
-            convert -thumbnail 160 $NEWPATH$file $File2
-            convert -thumbnail 160 $EXPORTPATH$file $File3
+            convert -thumbnail 160 $BASEPATH$file $EXPORTPATH$File1
+            convert -thumbnail 160 $NEWPATH$file $EXPORTPATH$File2
+            convert -thumbnail 160 $EXPORTPATH$file $EXPORTPATH$File3
             #TODO Shell太难用,页面生成代码移到JS中进行
             echo "<tr>">>$result_html
             echo "<td><font style=\"color:red;\">$file</font></td>">>$result_html
